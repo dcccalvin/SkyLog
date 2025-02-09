@@ -4,7 +4,7 @@
 
 <div class="card w-50 shadow p-3 mb-5 bg-white rounde">
     <div class="card-body ">
-      <h5 class="card-title">Login</h5>
+      <h5 class="card-title">Sign up</h5>
       <form method="POST" action="">
         {% csrf_token %}
             
@@ -51,6 +51,10 @@
         
         <button type="submit" class="btn btn-primary" name="create user" >submit</button>
       </form>
+
+      <div class="mt-4 text-center">
+        Already have an account? <a href="{% url 'login' %}" class="ml-2">SignIn</a>
+    </div>
 
 
     </div>
