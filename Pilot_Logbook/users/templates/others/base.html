@@ -21,10 +21,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link mx-3 active" aria-current="page" href="#">Home</a>
+              <a class="nav-link mx-3 active" aria-current="page" href="{% url "home" %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-3" href="#">Logs</a>
+                <a class="nav-link mx-3" href="{% url "login" %}">Login</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link mx-3" href="#">LogBook</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-3" href="#">Search</a>
