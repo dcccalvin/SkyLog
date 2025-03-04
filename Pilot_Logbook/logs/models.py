@@ -13,13 +13,18 @@ icao_validator = RegexValidator(
 
 class Log(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  
-    date = models.DateField(default=now)  
-    aircraft = models.CharField(max_length=100)
+    date = models.DateField(default=now) 
+    AIRCRAFT=[("General Aviation","General Aviation"),("Commercial","Commercial"),("Military","Military")] 
+    aircraft = models.CharField(max_length=100,choices=AIRCRAFT)
     aircraft_type = models.CharField(max_length=100)
     aircraft_registration = models.CharField(max_length=100)
     departure_airport = models.CharField(max_length=4, validators=[icao_validator])
     arrival_airport = models.CharField(max_length=4, validators=[icao_validator])
     flight_time = models.DurationField()  # timedelta for hours & minutes
+    soul_on_board = models.PositiveIntegerField(default=0)
+    fuel_on_departure = models.PositiveIntegerField(default=0)
+    fuel_on_arrival = models.PositiveIntegerField(default=0)
+
     remarks = models.TextField(blank=True, null=True)
     PURPOSE=[("Training","Training"),
              ("Recreational","Recreational"),
