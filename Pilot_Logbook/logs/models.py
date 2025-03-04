@@ -21,7 +21,7 @@ class Log(models.Model):
     departure_airport = models.CharField(max_length=4, validators=[icao_validator])
     arrival_airport = models.CharField(max_length=4, validators=[icao_validator])
     flight_time = models.DurationField()  # timedelta for hours & minutes
-    soul_on_board = models.PositiveIntegerField(default=0)
+    souls_on_board = models.PositiveIntegerField(default=0)
     fuel_on_departure = models.PositiveIntegerField(default=0)
     fuel_on_arrival = models.PositiveIntegerField(default=0)
 
