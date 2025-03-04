@@ -27,13 +27,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link mx-3 active" aria-current="page" href="{% url 'home' %}">Home</a>
+              <a class="nav-link mx-3 active" aria-current="page" href="{% url 'users:home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-3" href="{% url 'login' %}">Login</a>
+              <a class="nav-link mx-3" href="{% url 'users:login' %}">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-3" href="{% url 'log_list' %}">LogBook</a>
+              <a class="nav-link mx-3" href="{% url 'logs:logs_list' %}">LogBook</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-3" href="#">Search</a>
