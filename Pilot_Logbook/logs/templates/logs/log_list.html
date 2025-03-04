@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Your Flight Logs</h2>
+
+    
+    <div class="text-right mb-3">
+        <a href="{% url 'create_log' %}" class="btn btn-primary">Add New Log</a>
+    </div>
+
+    {% if logs %}
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Date</th>
+                <th>Aircraft</th>
+                <th>Aircraft Type</th>
+                <th>Aircraft Registration</th>
+                <th>Departure Airport</th>
+                <th>Arrival Airport</th>
+                <th>Flight Time</th>
+                <th>Flight Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.date }}</td>
+                <td>{{ log.aircraft }}</td>
+                <td>{{ log.aircraft_type }}</td>
+                <td>{{ log.aircraft_registration }}</td>
+                <td>{{ log.departure_airport }}</td>
+                <td>{{ log.arrival_airport }}</td>
+                <td>{{ log.flight_time }}</td>
+                <td>{{ log.flight_type }}</td>
+                {% comment %} <td>
+                    <a href="{% url 'edit_log' log.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'delete_log' log.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td> {% endcomment %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="text-center">No flight logs available.</p>
+    {% endif %}
+</div>
+{% endblock %}
