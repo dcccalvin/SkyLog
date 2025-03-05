@@ -10,13 +10,30 @@ icao_validator = RegexValidator(
     message="Enter a valid 4-letter ICAO airport code (e.g., HKJK, EGLL).",
     code='invalid_icao'
 )
+ 
+def is_aircraft_reg_num_valid(reg_num: str)  -> bool:
+    split_reg_num = reg_num.split('-')
 
+    # check if it is splited correctly using '-'
+    if len(split_reg_num) != 2:
+        return False
+    
+    # Check if the first part is alphanumeric and has 1 to 2 characters (country code)
+    if not split_reg_num[0].isalnum() or len(split_reg_num[0]) not in [1, 2]:
+        return False
+    
+    # Check if the second part is alphanumeric and has 3 to 5 characters
+    if not split_reg_num[1].isalnum() or len(split_reg_num[1]) not in [3, 5]:
+        return False
+    
+    return True
 class Log(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  
     date = models.DateField(default=now) 
     AIRCRAFT=[("General Aviation","General Aviation"),("Commercial","Commercial"),("Military","Military")] 
     aircraft = models.CharField(max_length=100,choices=AIRCRAFT)
     aircraft_type = models.CharField(max_length=100)
+    #will add validator later
     aircraft_registration = models.CharField(max_length=100)
     departure_airport = models.CharField(max_length=4, validators=[icao_validator])
     arrival_airport = models.CharField(max_length=4, validators=[icao_validator])
