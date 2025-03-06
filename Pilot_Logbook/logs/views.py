@@ -11,7 +11,8 @@ def create_log(request):
             log = log_form.save(commit=False)
             log.user = request.user  # Link the log to the logged-in user
             log.save()
-            return redirect('log_list')
+            # return render(request,'logs/log_list.html')
+            return redirect('logs:logs_list')
     else:
         log_form = LogForm()
     
