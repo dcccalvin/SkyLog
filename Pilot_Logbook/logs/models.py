@@ -60,4 +60,4 @@ class Log(models.Model):
     safety_concerns = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.date} | {self.aircraft} | {self.departure_airport} to {self.arrival_airport}"
+        return f"{self.date} | {self.aircraft} | {self.departure_airport} to {self.arrival_airport} |--->{self.user}"
