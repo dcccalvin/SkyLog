@@ -29,7 +29,7 @@ def is_aircraft_reg_num_valid(reg_num: str)  -> bool:
     return True
 class Log(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  
-    date = models.DateField(default=now) 
+    date = models.DateTimeField(default=now)
     AIRCRAFT=[("General Aviation","General Aviation"),("Commercial","Commercial"),("Military","Military")] 
     aircraft = models.CharField(max_length=100,choices=AIRCRAFT)
     aircraft_type = models.CharField(max_length=100)
