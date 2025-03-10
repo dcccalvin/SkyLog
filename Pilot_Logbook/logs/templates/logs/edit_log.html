@@ -1,0 +1,14 @@
+{% extends "others/base.html" %}
+{% block title %}Edit Log{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Flight Log</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ log_form.as_p }}
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="{% url 'logs:logs_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

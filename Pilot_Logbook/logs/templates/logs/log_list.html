@@ -45,8 +45,9 @@
                 <td>{{ log.flight_time }}</td>
                 <td>{{ log.flight_type }}</td>
                  <td>
-                    <a href="" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{% url 'logs:edit_log' log.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'logs:delete_log' log.id %}" class="btn btn-danger btn-sm">Delete</a>
+
                 </td> 
                 {% comment %} <td>
                     <a href="{% url 'edit_log' log.id %}" class="btn btn-warning btn-sm">Edit</a>

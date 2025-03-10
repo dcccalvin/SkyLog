@@ -1,0 +1,20 @@
+{% extends "others/base.html" %}
+{% block title %}Delete Log{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-danger">Confirm Delete</h2>
+    <p>Are you sure you want to delete this flight log?</p>
+    <ul>
+        <li><strong>Date:</strong> {{ log.date }}</li>
+        <li><strong>Aircraft:</strong> {{ log.aircraft }}</li>
+        <li><strong>Departure:</strong> {{ log.departure_airport }}</li>
+        <li><strong>Arrival:</strong> {{ log.arrival_airport }}</li>
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'logs:logs_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
