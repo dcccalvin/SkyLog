@@ -1,0 +1,56 @@
+{% extends "others/base.html" %}
+{% block title %}Generate PDF{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">{{ request.user }}'s Flight Logs</h2>
+
+    <a class="btn btn-primary" href="{% url 'logs:generate_pdf' %}" role="button">
+        Download PDF
+    </a>
+    
+
+{% if logs %}
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Date</th>
+                <th>Aircraft</th>
+                <th>Aircraft Type</th>
+                <th>Aircraft Registration</th>
+                <th>Departure Airport</th>
+                <th>Arrival Airport</th>
+                <th>Souls On Board</th>
+                <th>Fuel on Departure</th>
+                <th>Fuel on Arrival</th>
+                <th>Flight Time</th>
+                <th>Flight Type</th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.date }}</td>
+                <td>{{ log.aircraft }}</td>
+                <td>{{ log.aircraft_type }}</td>
+                <td>{{ log.aircraft_registration }}</td>
+                <td>{{ log.departure_airport }}</td>
+                <td>{{ log.arrival_airport }}</td>
+                <td>{{ log.souls_on_board }}</td>
+                <td>{{ log.fuel_on_departure }}</td>
+                <td>{{ log.fuel_on_arrival }}</td>
+                <td>{{ log.flight_time }}</td>
+                <td>{{ log.flight_type }}</td>
+                 
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="text-center">No flight logs available.</p>
+    {% endif %}
+</div>
+{% endblock %}
