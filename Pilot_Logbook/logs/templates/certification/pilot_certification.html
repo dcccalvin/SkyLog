@@ -1,0 +1,93 @@
+{% extends "others/base.html" %} 
+{% block title %}Certification{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Certification</h1>
+            <hr>
+            <form method="POST" action="">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ pilot_certification_form.medical_class.id_for_label }}">{{ pilot_certification_form.medical_class.label }}</label>
+                    <select class="form-control" id="{{ pilot_certification_form.medical_class.id_for_label }}" name="{{ pilot_certification_form.medical_class.name }}">
+                        {% for choice in pilot_certification_form.medical_class.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == pilot_certification_form.medical_class.value %}selected{% endif %}>{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_certification_form.medical_certificate_issue_date.id_for_label }}">{{ pilot_certification_form.medical_certificate_issue_date.label }}</label>
+                    <input type="date" class="form-control" id="{{ pilot_certification_form.medical_certificate_issue_date.id_for_label }}" name="{{ pilot_certification_form.medical_certificate_issue_date.name }}" value="{{ pilot_certification_form.medical_certificate_issue_date.value|default:'' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_certification_form.medical_certificate_expiry_date.id_for_label }}">{{ pilot_certification_form.medical_certificate_expiry_date.label }}</label>
+                    <input type="date" class="form-control" id="{{ pilot_certification_form.medical_certificate_expiry_date.id_for_label }}" name="{{ pilot_certification_form.medical_certificate_expiry_date.name }}" value="{{ pilot_certification_form.medical_certificate_expiry_date.value|default:'' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_cerification_form.medical_certificate_number.id_for_label }}">{{ pilot_certification_form.medical_certificate_number.label }}</label>
+                    <input type="text" class="form-control" id="{{ pilot_certification_form.medical_certificate_number.id_for_label }}" name="{{ pilot_certification_form.medical_certificate_number.name }}" value="{{ pilot_certification_form.medical_certificate_number.value|default:'' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_certification_form.license_type.id_for_label }}">{{ pilot_certification_form.license_type.label }}</label>
+                    <select class="form-control" id="{{ pilot_certification_form.license_type.id_for_label }}" name="{{ pilot_certification_form.license_type.name }}">
+                        {% for choice in pilot_certification_form.license_type.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == pilot_certification_form.license_type.value %}selected{% endif %}>{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_certification_form.license_number.id_for_label }}">{{ pilot_certification_form.license_number.label }}</label>
+                    <input type="text" class="form-control" id="{{ pilot_certification_form.license_number.id_for_label }}" name="{{ pilot_certification_form.license_number.name }}" value="{{ pilot_certification_form.license_number.value|default:'' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_certification__form.license_issue_date.id_for_label }}">{{ pilot_certification_form.license_issue_date.label }}</label>
+                    <input type="date" class="form-control" id="{{ pilot_certification_form.license_issue_date.id_for_label }}" name="{{ pilot_certification_form.license_issue_date.name }}" value="{{ pilot_certification_form.license_issue_date.value|default:'' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_certification_form.license_expiry_date.id_for_label }}">{{ pilot_certification_form.license_expiry_date.label }}</label>
+                    <input type="date" class="form-control" id="{{ pilot_certification_form.license_expiry_date.id_for_label }}" name="{{ pilot_certification_form.license_expiry_date.name }}" value="{{ pilot_certification_form.license_expiry_date.value|default:'' }}" required>   
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_certification_form.engine_rating.id_for_label }}">{{ pilot_certification_form.engine_rating.label }}</label>
+                    <select class="form-control" id="{{ pilot_certification_form.engine_rating.id_for_label }}" name="{{ pilot_certification_form.engine_rating.name }}">
+                        {% for choice in pilot_certification_form.engine_rating.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == pilot_certification_form.engine_rating.value %}selected{% endif %}>{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_certification_form.instrument_rating.id_for_label }}">{{ pilot_certification_form.instrument_rating.label }}</label>
+                    <select class="form-control" id="{{ pilot_certification_form.instrument_rating.id_for_label }}" name="{{ pilot_certification_form.instrument_rating.name }}">
+                        {% for choice in pilot_certification_form.instrument_rating.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == pilot_certification_form.instrument_rating.value %}selected{% endif %}>{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ pilot_certification_form.night_rating.id_for_label }}">{{ pilot_certification_form.night_rating.label }}</label>
+                    <select class="form-control" id="{{ pilot_certification_form.night_rating.id_for_label }}" name="{{ pilot_certification_form.night_rating.name }}">
+                        {% for choice in pilot_certification_form.night_rating.field.choices %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == pilot_certification_form.night_rating.value %}selected{% endif %}>{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>   
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

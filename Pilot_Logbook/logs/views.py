@@ -6,6 +6,8 @@ from django.db.models import Q
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+from .models import PilotCertification
+from .forms import PilotCertificationForm
 
 @login_required
 def create_log(request):
@@ -68,6 +70,7 @@ def delete_log(request, log_id):
 def generate_pdf_page(request):
     logs = Log.objects.filter(user=request.user).order_by('-date')
     return render(request, 'logs/generate_pdf.html', {'logs': logs})
+
 @login_required
 def generate_pdf(request):
     logs = Log.objects.filter(user=request.user).order_by('-date')
@@ -85,7 +88,7 @@ def generate_pdf(request):
     y_position -= 40
 
     for log in logs:
-        # Add a new page if near the bottom
+        # func to add new page if near the end of the page
         if y_position < 50:  
             pdf.showPage()
             y_position = height - 100
@@ -112,3 +115,17 @@ def generate_pdf(request):
 
     pdf.save()
     return response
+
+@login_required
+def pilot_certification(request):
+    if request.method == "POST":
+        pilot_certification_form = PilotCertificationForm(request.POST)
+        if pilot_certification_form.is_valid():
+            pilot_certification = pilot_certification_form.save(commit=False)
+            # Link the pilot certification to the logged-in user
+            pilot_certification.user = request.user
+            pilot_certification.save()
+            return redirect('logs:pilot_certification')
+    else:
+        pilot_certification_form = PilotCertificationForm()
+    return render(request, 'certification/pilot_certification.html', {'pilot_certification_form': pilot_certification_form})    

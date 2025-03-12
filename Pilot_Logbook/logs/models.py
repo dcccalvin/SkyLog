@@ -27,6 +27,7 @@ def is_aircraft_reg_num_valid(reg_num: str)  -> bool:
         return False
     
     return True
+
 class Log(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  
     date = models.DateTimeField(default=now)
@@ -61,3 +62,26 @@ class Log(models.Model):
 
     def __str__(self):
         return f"{self.date} | {self.aircraft} | {self.departure_airport} to {self.arrival_airport} |--->{self.user}"
+    
+class PilotCertification(models.Model):
+    user =models.ForeignKey(User,on_delete=models.CASCADE)
+    MEDICAL_CLASS=[("Class 1","Class 1"),("Class 2","Class 2"),("Class 3","Class 3")]
+    medical_class=models.CharField(max_length=20,choices=MEDICAL_CLASS)
+    medical_certificate_number=models.CharField(max_length=20)
+    medical_certificate_issue_date=models.DateField()
+    medical_certificate_expiry_date=models.DateField()
+    LICENSE_TYPES=[("PPL","PPL"),("CPL","CPL"),("ATPL","ATPL")]
+    license_type=models.CharField(max_length=20,choices=LICENSE_TYPES)
+    license_number=models.CharField(max_length=20)
+    license_issue_date=models.DateField()
+    license_expiry_date=models.DateField()
+    ENGINE_RATING=[("Single Engine","Single Engine"),("Multi Engine","Multi Engine")]
+    engine_rating=models.CharField(max_length=20,choices=ENGINE_RATING)
+    INSTRUMENT_RATING=[("Yes","Yes"),("No","No")]
+    instrument_rating=models.CharField(max_length=20,choices=INSTRUMENT_RATING)
+    NIGHT_RATING=[("Yes","Yes"),("No","No")]
+    night_rating=models.CharField(max_length=20,choices=NIGHT_RATING)
+
+
+    def __str__(self):
+        return f"{self.user} | {self.license_type} | {self.engine_rating} | {self.instrument_rating} | {self.night_rating}"
