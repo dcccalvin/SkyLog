@@ -8,6 +8,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from .models import PilotCertification
 from .forms import PilotCertificationForm
+from django.utils import timezone
 
 @login_required
 def create_log(request):
@@ -118,8 +119,23 @@ def generate_pdf(request):
 
 @login_required
 def pilot_certification(request):
-    certification, created = PilotCertification.objects.get_or_create(user=request.user)
-    
+    certification, created = PilotCertification.objects.get_or_create(
+        user=request.user,
+        defaults={
+            "medical_certificate_issue_date": timezone.now().date(),
+            "medical_certificate_number": "000000",
+            "medical_class": "Class 1",  
+            "medical_certificate_expiry_date": timezone.now().date(),
+            "license_type": "PPL",  
+            "license_number": "000000",
+            "license_issue_date": timezone.now().date(),
+            "license_expiry_date": timezone.now().date(),
+            "engine_rating": "Single Engine",  
+            "instrument_rating": "No",  
+            "night_rating": "No",  
+        }
+    )
+
     if request.method == "POST":
         pilot_certification_form = PilotCertificationForm(request.POST, instance=certification)
         if pilot_certification_form.is_valid():
