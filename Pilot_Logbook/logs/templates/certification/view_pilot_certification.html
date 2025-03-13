@@ -1,0 +1,61 @@
+{% extends "others/base.html" %}
+{% block title %}My Certifications{% endblock %}
+{% block content %}
+{% load static %} 
+<div class="container mt-4">
+    <h2 class="mb-4">Your Certifications</h2>
+
+    <div class="row">
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white d-flex align-items-center">
+                    <img src="{% static 'svg/medical.svg' %}" alt="Medical Icon" width="24" class="mr-2">
+                    <h5 class="mb-0">Medical Certification</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Class:</strong> {{ certification.medical_class }}</p>
+                    <p><strong>Cert No:</strong> {{ certification.medical_certificate_number }}</p>
+                    <p><strong>Issued:</strong> {{ certification.medical_certificate_issue_date }}</p>
+                    <p><strong>Expires:</strong> {{ certification.medical_certificate_expiry_date }}</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark d-flex align-items-center">
+                    <img src="{% static 'svg/license.svg' %}" alt="License Icon" width="24" class="mr-2">
+                    <h5 class="mb-0">License</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Type:</strong> {{ certification.license_type }}</p>
+                    <p><strong>License No:</strong> {{ certification.license_number }}</p>
+                    <p><strong>Issued:</strong> {{ certification.license_issue_date }}</p>
+                    <p><strong>Expires:</strong> {{ certification.license_expiry_date }}</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white d-flex align-items-center">
+                    <img src="{% static 'svg/ratings.svg' %}" alt="Ratings Icon" width="24" class="mr-2">
+                    <h5 class="mb-0">Ratings</h5>
+                </div>
+                <div class="card-body">
+                    <p><img src="{% static 'svg/engine.svg' %}" width="20"> <strong>Engine Rating:</strong> {{ certification.engine_rating }}</p>
+                    <p><img src="{% static 'svg/instruments.svg' %}" width="20"> <strong>Instrument Rating:</strong> {{ certification.instrument_rating }}</p>
+                    <p><img src="{% static 'svg/night.svg' %}" width="20"> <strong>Night Rating:</strong> {{ certification.night_rating }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="{% url 'logs:pilot_certification' %}" class="btn btn-outline-primary">Edit Certification</a>
+    </div>
+</div>
+{% endblock %}

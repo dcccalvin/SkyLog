@@ -118,14 +118,21 @@ def generate_pdf(request):
 
 @login_required
 def pilot_certification(request):
+    certification, created = PilotCertification.objects.get_or_create(user=request.user)
+    
     if request.method == "POST":
-        pilot_certification_form = PilotCertificationForm(request.POST)
+        pilot_certification_form = PilotCertificationForm(request.POST, instance=certification)
         if pilot_certification_form.is_valid():
-            pilot_certification = pilot_certification_form.save(commit=False)
-            # Link the pilot certification to the logged-in user
-            pilot_certification.user = request.user
-            pilot_certification.save()
-            return redirect('logs:pilot_certification')
+            pilot_certification_form.save()
+            return redirect('logs:view_pilot_certification')
+
     else:
-        pilot_certification_form = PilotCertificationForm()
-    return render(request, 'certification/pilot_certification.html', {'pilot_certification_form': pilot_certification_form})    
+        pilot_certification_form = PilotCertificationForm(instance=certification)
+
+    return render(request, 'certification/pilot_certification.html', {'pilot_certification_form': pilot_certification_form})
+
+@login_required
+def view_pilot_certification(request):
+    certification = get_object_or_404(PilotCertification, user=request.user)
+    return render(request, 'certification/view_pilot_certification.html', {'certification': certification}) 
+
