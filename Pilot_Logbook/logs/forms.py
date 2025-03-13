@@ -1,7 +1,10 @@
 from django import forms
 from .models import Log
 from .models import PilotCertification
+from django.utils import timezone
 from django.utils.timezone import now
+from django.utils.dateparse import parse_datetime
+from django.core.exceptions import ValidationError
 
 class LogForm(forms.ModelForm):
     class Meta:
@@ -11,9 +14,20 @@ class LogForm(forms.ModelForm):
                     'souls_on_board', 'fuel_on_departure', 'fuel_on_arrival',
                   'remarks', 'purpose', 'flight_type', 'safety_concerns']
     def clean_date(self):
-        date = self.cleaned_data.get('date')
-        if date and date > now():
-            raise forms.ValidationError("The date cannot be in the future.")
+        date_str = self.cleaned_data.get('date')  # Get the raw input
+
+        if isinstance(date_str, str): 
+            date = parse_datetime(date_str)  # Convert string to datetime
+        else:
+            date = date_str  # Use as-is if already a datetime object
+
+        if not date:  # Ensure valid datetime
+            raise ValidationError("Invalid date format. Please use YYYY-MM-DD HH:MM.")
+        
+
+        if date > now():  # Ensure the date is not in the future
+            raise ValidationError("The date cannot be in the future.")
+
         return date
 
     def clean(self):

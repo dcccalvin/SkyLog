@@ -16,8 +16,9 @@
 
         <div class="form-group">
             <label for="{{ log_form.date.id_for_label }}">{{ log_form.date.label }}</label>
-            <input type="date" class="form-control" id="{{ log_form.date.id_for_label }}" name="{{ log_form.date.name }}" 
-                   value="{{ log_form.date.value|default:'' }}" required>
+            <input type="datetime-local" class="form-control" id="{{ log_form.date.id_for_label }}" 
+                   name="{{ log_form.date.name }}" value="{{ log_form.date.value|default:'' }}" required>
+            <div class="text-muted">Ensure you use UTC time</div>       
             {% if log_form.date.errors %}
                 <div class="text-danger">{{ log_form.date.errors|striptags }}</div>
             {% endif %}
