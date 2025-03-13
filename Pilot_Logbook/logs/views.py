@@ -22,6 +22,7 @@ def create_log(request):
             # return render(request,'logs/log_list.html')
             return redirect('logs:logs_list')
     else:
+        
         log_form = LogForm()
     
     return render(request, 'logs/create_log.html', {'log_form': log_form})
