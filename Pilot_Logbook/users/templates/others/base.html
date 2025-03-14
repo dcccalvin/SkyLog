@@ -16,7 +16,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#"><b>SkyLog</b></a>
+        <a class="navbar-brand" href="{% url "users:home" %}"><b>SkyLog</b></a>
         
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -51,6 +51,25 @@
         <!-- Page content goes here -->
         {% endblock %}
     </div>
+
+    <footer class="bg-dark text-white mt-5 p-4 text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="{% static 'images/airplane-svgrepo-com.svg' %}" alt="Company Logo" class="img-fluid mb-2" style="max-width: 100px;">
+          </div>
+          <div class="col-md-4">
+            <h5>SkyLog</h5>
+            <p>&copy; 2025 SkyLog. All rights reserved.</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <p>Email: <a class="link-primary" href="mailto:info@skylog.com">info@skylog.com</a></p>
+            <p>Phone: +254 712345678</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     {% comment %} SOlves issue #2 {% endcomment %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
