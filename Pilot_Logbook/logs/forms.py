@@ -1,6 +1,7 @@
 from django import forms
 from .models import Log
-from .models import PilotCertification
+from .models import PilotCertification, TrainingRecord, FlightCrewAssignment, WeatherReport, EmergencyIncident, MaintenanceReport, FlightAttachment
+from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.timezone import now
 from django.utils.dateparse import parse_datetime
@@ -48,4 +49,46 @@ class PilotCertificationForm(forms.ModelForm):
                   'license_issue_date','license_expiry_date','engine_rating','instrument_rating',
                   'night_rating'
                   ]
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data['medical_certificate_issue_date'] > cleaned_data['medical_certificate_expiry_date']:
+            raise ValidationError("Medical certificate issue date cannot be after expiry date.")
+        if cleaned_data['license_issue_date'] > cleaned_data['license_expiry_date']:
+            raise ValidationError("License issue date cannot be after expiry date.")
+            
+        return cleaned_data
+
+
+class TrainingRecordForm(forms.ModelForm):
+    class Meta:
+        model = TrainingRecord
+        fields = ['training_type', 'completion_date', 'instructor_name']
+
+class FlightCrewAssignmentForm(forms.ModelForm):
+    class Meta:
+        model = FlightCrewAssignment
+        fields = ['role','number_of_crew']
+
+class WeatherReportForm(forms.ModelForm):
+    class Meta:
+        model = WeatherReport
+        fields = ['weather_conditions', 'temperature', 'wind_speed']
+
+class EmergencyIncidentForm(forms.ModelForm):
+    class Meta:
+        model = EmergencyIncident
+        fields = ['incident_type','actions_taken','outcome' ]
+
+
+
+class FlightAttachmentForm(forms.ModelForm):
+    class Meta:
+        model = FlightAttachment
+        fields = ['file', 'description']
+
+class MaintenanceReportForm(forms.ModelForm):
+    class Meta:
+        model = MaintenanceReport
+        fields = ['aircraft_registration','issue_reported','fix_details']
+
 

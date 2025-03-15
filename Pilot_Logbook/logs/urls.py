@@ -11,4 +11,7 @@ urlpatterns = [
     path('logs/generate_pdf/', views.generate_pdf, name='generate_pdf'),
     path('certifications/', views.pilot_certification, name='pilot_certification'), 
     path('certifications/view/', views.view_pilot_certification, name='view_pilot_certification'),
+    path('training/create/', views.create_training_record, name='create_training_record'),
+    path('training/', views.list_training_records, name='training_record_list'),
+    path('log/<int:log_id>/additional-info/', views.add_additional_info, name='add_additional_info'),
 ]

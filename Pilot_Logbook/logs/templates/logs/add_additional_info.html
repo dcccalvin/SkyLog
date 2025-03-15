@@ -1,0 +1,25 @@
+{% extends "others/base.html" %}
+
+{% block content %}
+<h2>Additional Information for Flight Log</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>Flight Crew Assignment</h3>
+    {{ crew_form.as_p }}
+
+    <h3>Weather Report</h3>
+    {{ weather_form.as_p }}
+
+    <h3>Emergency Incident</h3>
+    {{ incident_form.as_p }}
+
+    <h3>Flight Attachment</h3>
+    {{ attachment_form.as_p }}
+
+    <h3>Maintenance Report</h3>
+    {{ maintenance_form.as_p }}
+
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

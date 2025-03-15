@@ -6,9 +6,11 @@ from django.db.models import Q
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from .models import PilotCertification
-from .forms import PilotCertificationForm
+from .models import PilotCertification, TrainingRecord, FlightCrewAssignment, WeatherReport, EmergencyIncident, MaintenanceReport, FlightAttachment
+from .forms import PilotCertificationForm, TrainingRecordForm, FlightCrewAssignmentForm, WeatherReportForm, EmergencyIncidentForm, MaintenanceReportForm, FlightAttachmentForm
+from django.contrib.auth.models import User
 from django.utils import timezone
+
 
 @login_required
 def create_log(request):
@@ -16,16 +18,13 @@ def create_log(request):
         log_form = LogForm(request.POST)  
         if log_form.is_valid():
             log = log_form.save(commit=False)
-            # Link the log to the logged-in user
             log.user = request.user  
             log.save()
-            # return render(request,'logs/log_list.html')
-            return redirect('logs:logs_list')
+            return redirect('logs:add_additional_info', log_id=log.id) 
     else:
-        
         log_form = LogForm()
-    
     return render(request, 'logs/create_log.html', {'log_form': log_form})
+
 
 @login_required
 def log_list(request):
@@ -153,3 +152,72 @@ def view_pilot_certification(request):
     certification = get_object_or_404(PilotCertification, user=request.user)
     return render(request, 'certification/view_pilot_certification.html', {'certification': certification}) 
 
+# --- Training Records ---
+@login_required
+def create_training_record(request):
+    if request.method == "POST":
+        form = TrainingRecordForm(request.POST)
+        if form.is_valid():
+            training_record = form.save(commit=False)
+            training_record.user = request.user
+            training_record.save()
+            return redirect('logs:training_record_list')
+    else:
+        form = TrainingRecordForm()
+    return render(request, 'logs/training/create.html', {'form': form})
+
+@login_required
+def list_training_records(request):
+    records = TrainingRecord.objects.filter(user=request.user)
+    return render(request, 'logs/training/list.html', {'records': records})
+
+@login_required
+def add_additional_info(request, log_id):
+    log_entry = get_object_or_404(Log, id=log_id, user=request.user)
+
+    if request.method == "POST":
+        crew_form = FlightCrewAssignmentForm(request.POST)
+        weather_form = WeatherReportForm(request.POST)
+        incident_form = EmergencyIncidentForm(request.POST)
+        attachment_form = FlightAttachmentForm(request.POST, request.FILES)
+        maintenance_form = MaintenanceReportForm(request.POST)
+
+        if all([crew_form.is_valid(), weather_form.is_valid(), incident_form.is_valid(), attachment_form.is_valid(), maintenance_form.is_valid()]):
+            crew = crew_form.save(commit=False)
+            crew.log_entry = log_entry
+            crew.user = request.user
+            crew.save()
+
+            weather = weather_form.save(commit=False)
+            weather.log_entry = log_entry
+            weather.save()
+
+            incident = incident_form.save(commit=False)
+            incident.log_entry = log_entry
+            incident.save()
+
+            attachment = attachment_form.save(commit=False)
+            attachment.log_entry = log_entry
+            attachment.save()
+
+            maintenance = maintenance_form.save(commit=False)
+            maintenance.log_entry = log_entry
+            maintenance.save()
+
+            return redirect('logs:logs_list')  # Redirect after completion
+
+    else:
+        crew_form = FlightCrewAssignmentForm()
+        weather_form = WeatherReportForm()
+        incident_form = EmergencyIncidentForm()
+        attachment_form = FlightAttachmentForm()
+        maintenance_form = MaintenanceReportForm()
+
+    return render(request, 'logs/add_additional_info.html', {
+        'crew_form': crew_form,
+        'weather_form': weather_form,
+        'incident_form': incident_form,
+        'attachment_form': attachment_form,
+        'maintenance_form': maintenance_form,
+        'log_entry': log_entry,
+    })
