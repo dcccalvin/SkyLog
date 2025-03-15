@@ -6,6 +6,13 @@
         <div class="col-md-12">
             <h1>Certifications</h1>
             <hr>
+
+            <div class="col-md-4 mt-4">
+                <a href="{% url 'logs:view_pilot_certification' %}" class="btn btn-outline-primary">View Certifications</a>
+            </div>
+            
+            <br>
+
             <form method="POST" action="">
                 {% csrf_token %}
                 
