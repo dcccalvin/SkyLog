@@ -23,27 +23,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link mx-3 active" aria-current="page" href="{% url 'users:home' %}">Home</a>
+                      <a class="nav-link mx-3 " aria-current="page" href="{% url 'users:home' %}">Home</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                      <a class="nav-link mx-3" href="{% url 'logs:logs_list' %}">LogBook</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="{% url 'users:login' %}">Login</a>
+                      <a class="nav-link mx-3" href="{% url "logs:training_record_list" %}">Training</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="{% url 'logs:logs_list' %}">LogBook</a>
+                      <a class="nav-link mx-3" href="{% url "logs:pilot_certification" %}">Certification</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="{% url 'logs:logs_list' %}">LogBook</a>
+                      <a class="nav-link mx-3" href="{% url 'logs:generate_pdf_page' %}">Download</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="{% url 'logs:pilot_certification' %}">Certification</a>
+                      <a class="nav-link mx-3" href="{% url 'users:logout' %}">Logout</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-3" href="{% url 'logs:generate_pdf_page' %}">Reports</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-3" href="{% url 'users:logout' %}">Logout</a>
-                    </li>
-                </ul>
+                  </ul>
             </div>
         </div>
     </nav>
