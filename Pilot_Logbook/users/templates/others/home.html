@@ -97,7 +97,7 @@
                         <h5 class="card-title mb-0">Log Flights</h5>
                     </div>
                     <p class="card-text px-3">Easily log and manage your flights with SkyLog.</p>
-                    <button class="btn btn-light mt-2" href="#Features">Start Logging</button>
+                    <a class="btn btn-light mt-2" href="{% url 'logs:logs_list' %}">Start Logging</a>
                 </div>
             </div>
     
@@ -110,7 +110,7 @@
                         <h5 class="card-title mb-0">Manage Certifications</h5>
                     </div>
                     <p class="card-text px-3">Track and update your pilot certifications effortlessly.</p>
-                    <button class="btn btn-light mt-2" href="#Features">Manage Now</button>
+                    <a class="btn btn-light mt-2" href="{% url 'logs:pilot_certification' %}">Manage Now</a>
                 </div>
             </div>
     
@@ -123,7 +123,7 @@
                         <h5 class="card-title mb-0">Download Records</h5>
                     </div>
                     <p class="card-text px-3">Export and download your flight logs anytime.</p>
-                    <button class="btn btn-light mt-2" href="#Features">Download PDF</button>
+                    <a class="btn btn-light mt-2" href="{% url 'logs:generate_pdf_page' %}">Download PDF</a>
                 </div>
             </div>
     
@@ -136,37 +136,38 @@
                         <h5 class="card-title mb-0">Search Logs</h5>
                     </div>
                     <p class="card-text px-3">Easily find flights or certifications with search tools.</p>
-                    <button class="btn btn-light mt-2" href="#Features">Search Logs</button>
+                    <a class="btn btn-light mt-2" href="{% url 'logs:logs_list' %}">Search Logs</a>
                 </div>
             </div>
     
             <!-- Edit Logs -->
             <div class="col-md-4 mt-3">
-                <div class="card p-3 text-white" style="background-color:rgb(251, 255, 0);" title="Edit your previously logged flights or update details as needed.">
+                <div class="card p-3 text-white" style="background-color:rgb(255, 72, 0);" title="Edit your previously logged flights or update details as needed.">
                     <div class="card-body d-flex align-items-center">
                         <img src="{% static 'images/edit-svgrepo-com.svg' %}" 
                              alt="Edit Icon" class="me-3" width="40" height="40">
                         <h5 class="card-title mb-0">Edit Logs</h5>
                     </div>
-                    <p class="card-text px-3">Modify or update your flight log entries anytime.</p>
-                    <button class="btn btn-light mt-2" href="#Features">Edit Logs</button>
+                    <p class="card-text px-3">Modify or delete your flight log entries anytime.</p>
+                    <a class="btn btn-light mt-2" href="{% url 'logs:logs_list' %}">Edit Logs</a>
                 </div>
             </div>
     
-            <!-- Delete Logs -->
+            <!-- Training Logs -->
             <div class="col-md-4 mt-3">
-                <div class="card p-3 text-white" style="background-color: #dc3545;" title="Remove unnecessary or outdated flight logs from your records.">
+                <div class="card p-3 text-white" style="background-color:rgb(143, 143, 143);" title="Remove unnecessary or outdated flight logs from your records.">
                     <div class="card-body d-flex align-items-center">
-                        <img src="{% static 'images/delete-svgrepo-com.svg' %}" 
+                        <img src="{% static 'images/pilot-svgrepo-com.svg' %}" 
                              alt="Delete Icon" class="me-3" width="40" height="40">
-                        <h5 class="card-title mb-0">Delete Logs</h5>
+                        <h5 class="card-title mb-0">Record Training Sessions</h5>
                     </div>
-                    <p class="card-text px-3">Clean up your flight logs by deleting unwanted records.</p>
-                    <button class="btn btn-light mt-2" href="#Features">Delete Logs</button>
+                    <p class="card-text px-3">Keep track of your training sessions and progress.</p>
+                    <a class="btn btn-light mt-2" href="{% url 'logs:training_record_list' %}">Training Logs</a>
                 </div>
             </div>
         </div>
     </div>
+    
     <br>
     <hr>
 
@@ -181,16 +182,23 @@
                     and download professional PDF reports—all through a sleek, user-friendly interface.
                 </p>
                 <p>
-                    Whether you're just starting your journey in aviation,Using high end simulators(MSFS 2025/Xplane12) or maintaining years of experience,
-                    SkyLog empowers you to stay organized and focus on what matters most—your passion for flying.
+                    Whether you're just starting your journey in aviation, using high-end simulators (MSFS 2025/Xplane12),
+                    or maintaining years of experience, SkyLog empowers you to stay organized and focus on what matters most—your passion for flying.
                 </p>
                 <p>
                     Our mission is to make aviation record management effortless and readily available, ensuring pilots like you
                     have the tools to streamline operations while preserving precision and professionalism.
                 </p>
+                <p class="mt-4">
+                    SkyLog is also committed to fostering innovation and collaboration. As an <strong>open-source project</strong>,
+                    we welcome contributions from the aviation and tech communities to help shape its future.
+                    Check out our GitHub repository to learn more or get involved: 
+                    <a href="https://github.com/dcccalvin/logbook_project" target="_blank">SkyLog on GitHub</a>.
+                </p>
             </div>
         </div>
     </div>
+    
 
     
 
