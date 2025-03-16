@@ -24,12 +24,12 @@ def register(request):
                 user=form.cleaned_data.get('username')
                 messages.success(request,"Account was created for " + user)
                 
-                return redirect('login')  # ✅ Redirect after successful registration
+                return redirect('users:login')  
             else:
                 messages.error(request, "There was an error with your registration. Please check the details below.")
         else:
             form = CreateUserForm()
-        return render(request, 'registration/register.html', context)  # ✅ Added return statement for GET requests
+        return render(request, 'registration/register.html', context) 
 
 
 def login_view(request):

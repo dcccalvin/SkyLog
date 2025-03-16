@@ -27,7 +27,7 @@
             <label for="exampleInputEmail1" class="form-label">{{form.username.label}}</label>
             
             <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default:'' }}" required>
-            <div id="emailHelp" class="form-text">We advice you use your real name</div>
+            <div id="emailHelp" class="form-text text-muted">We advice you use your real name</div>
           </div>
 
         <div class="mb-3">
@@ -49,7 +49,9 @@
           </div>
         
         
-        <button type="submit" class="btn btn-primary" name="create user" >submit</button>
+          <div class="d-flex justify-content-center mt-3 login_container">
+            <input class="btn btn-primary login_btn" type="submit" value="create user" name="create user">
+        </div>
       </form>
 
       <div class="mt-4 text-center">
