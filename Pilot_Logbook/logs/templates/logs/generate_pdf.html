@@ -3,11 +3,13 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2 class="text-center">{{ request.user }}'s Flight Logs</h2>
+    <h2 class="text-center"> {{ request.user|capfirst }}'s Flight Logs</h2>
 
     <a class="btn btn-primary" href="{% url 'logs:generate_pdf' %}" role="button">
-        Download PDF
+        📩Download PDF
     </a>
+    <br>
+    <hr>
     
 
 {% if logs %}

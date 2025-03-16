@@ -10,6 +10,8 @@ from .models import PilotCertification, TrainingRecord, FlightCrewAssignment, We
 from .forms import PilotCertificationForm, TrainingRecordForm, FlightCrewAssignmentForm, WeatherReportForm, EmergencyIncidentForm, MaintenanceReportForm, FlightAttachmentForm
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.utils.text import capfirst
+# Create your views here.
 
 
 @login_required
@@ -86,7 +88,7 @@ def generate_pdf(request):
     y_position = height - 50
 
     pdf.setFont("Helvetica", 16)
-    pdf.drawString(100, y_position, "Flight Logbook")
+    pdf.drawString(100, y_position, f"{capfirst(request.user.username)}'s Flight Logbook")
     pdf.setFont("Helvetica", 12)
     y_position -= 40
 
