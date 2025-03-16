@@ -1,12 +1,91 @@
 {% extends "others/base.html" %}
 {% block title %}Edit Log{% endblock %}
-
 {% block content %}
 <div class="container mt-4">
     <h2>Edit Flight Log</h2>
-    <form method="post">
+    {% if log_form.non_field_errors %}
+    <div class="alert alert-danger">
+        {{ log_form.non_field_errors }}
+    </div>
+    {% endif %}
+    <form method="POST">
         {% csrf_token %}
-        {{ log_form.as_p }}
+        
+        <div class="form-group">
+            <label for="{{ log_form.date.id_for_label }}">{{ log_form.date.label }}</label>
+            <input type="datetime-local" class="form-control" id="{{ log_form.date.id_for_label }}" 
+                   name="{{ log_form.date.name }}" value="{{ log_form.date.value|default:'' }}" required>
+            <div class="text-muted">Ensure you use UTC time</div>
+            {% if log_form.date.errors %}
+            <div class="text-danger">{{ log_form.date.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ log_form.aircraft.id_for_label }}">{{ log_form.aircraft.label }}</label>
+            <select class="form-control" id="{{ log_form.aircraft.id_for_label }}" name="{{ log_form.aircraft.name }}">
+                {% for choice in log_form.aircraft.field.choices %}
+                <option value="{{ choice.0 }}" {% if choice.0 == log_form.aircraft.value %}selected{% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+            {% if log_form.aircraft.errors %}
+            <div class="text-danger">{{ log_form.aircraft.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ log_form.departure_airport.id_for_label }}">{{ log_form.departure_airport.label }}</label>
+            <input type="text" class="form-control" id="{{ log_form.departure_airport.id_for_label }}" 
+                   name="{{ log_form.departure_airport.name }}" value="{{ log_form.departure_airport.value|default:'' }}" placeholder="Enter ICAO code">
+            {% if log_form.departure_airport.errors %}
+            <div class="text-danger">{{ log_form.departure_airport.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ log_form.arrival_airport.id_for_label }}">{{ log_form.arrival_airport.label }}</label>
+            <input type="text" class="form-control" id="{{ log_form.arrival_airport.id_for_label }}" 
+                   name="{{ log_form.arrival_airport.name }}" value="{{ log_form.arrival_airport.value|default:'' }}" placeholder="Enter ICAO code">
+            {% if log_form.arrival_airport.errors %}
+            <div class="text-danger">{{ log_form.arrival_airport.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ log_form.flight_time.id_for_label }}">{{ log_form.flight_time.label }}</label>
+            <input type="text" class="form-control" id="{{ log_form.flight_time.id_for_label }}" 
+                   name="{{ log_form.flight_time.name }}" value="{{ log_form.flight_time.value|default:'' }}" 
+                   placeholder="HH:MM:SS" pattern="^([0-9]{2}):([0-9]{2}):([0-9]{2})$" title="Enter time in HH:MM:SS format">
+            {% if log_form.flight_time.errors %}
+            <div class="text-danger">{{ log_form.flight_time.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ log_form.remarks.id_for_label }}">{{ log_form.remarks.label }}</label>
+            <textarea class="form-control" id="{{ log_form.remarks.id_for_label }}" name="{{ log_form.remarks.name }}">{{ log_form.remarks.value|default:'' }}</textarea>
+            {% if log_form.remarks.errors %}
+            <div class="text-danger">{{ log_form.remarks.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ log_form.flight_type.id_for_label }}">{{ log_form.flight_type.label }}</label>
+            <select class="form-control" id="{{ log_form.flight_type.id_for_label }}" name="{{ log_form.flight_type.name }}">
+                {% for choice in log_form.flight_type.field.choices %}
+                <option value="{{ choice.0 }}" {% if choice.0 == log_form.flight_type.value %}selected{% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+            {% if log_form.flight_type.errors %}
+            <div class="text-danger">{{ log_form.flight_type.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="{{ log_form.safety_concerns.id_for_label }}" name="{{ log_form.safety_concerns.name }}" {% if log_form.safety_concerns.value %}checked{% endif %}>
+            <label class="form-check-label" for="{{ log_form.safety_concerns.id_for_label }}">{{ log_form.safety_concerns.label }}</label>
+        </div>
+
         <button type="submit" class="btn btn-success">Save Changes</button>
         <a href="{% url 'logs:logs_list' %}" class="btn btn-secondary">Cancel</a>
     </form>
