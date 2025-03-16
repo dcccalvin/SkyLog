@@ -44,13 +44,15 @@ def log_list(request):
 
 @login_required
 def edit_log(request, log_id):
-    log = get_object_or_404(Log, id=log_id, user=request.user)  #Ensure user can only edit their own logs
+    log = get_object_or_404(Log, id=log_id, user=request.user)  
     
     if request.method == "POST":
         log_form = LogForm(request.POST, instance=log)
         if log_form.is_valid():
             log_form.save()  
             return redirect('logs:logs_list')
+        else:
+            print(log_form.errors)
     else:
         log_form = LogForm(instance=log)
 

@@ -34,6 +34,24 @@
         </div>
 
         <div class="form-group">
+            <label for="{{ log_form.aircraft_type.id_for_label }}">{{ log_form.aircraft_type.label }}</label>
+            <input type="text" class="form-control" id="{{ log_form.aircraft_type.id_for_label }}" name="{{ log_form.aircraft_type.name }}" 
+                   value="{{ log_form.aircraft_type.value|default:'' }}">
+            {% if log_form.aircraft_type.errors %}
+            <div class="text-danger">{{ log_form.aircraft_type.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ log_form.aircraft_registration.id_for_label }}">{{ log_form.aircraft_registration.label }}</label>
+            <input type="text" class="form-control" id="{{ log_form.aircraft_registration.id_for_label }}" 
+                   name="{{ log_form.aircraft_registration.name }}" value="{{ log_form.aircraft_registration.value|default:'' }}" required>
+            {% if log_form.aircraft_registration.errors %}
+            <div class="text-danger">{{ log_form.aircraft_registration.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
             <label for="{{ log_form.departure_airport.id_for_label }}">{{ log_form.departure_airport.label }}</label>
             <input type="text" class="form-control" id="{{ log_form.departure_airport.id_for_label }}" 
                    name="{{ log_form.departure_airport.name }}" value="{{ log_form.departure_airport.value|default:'' }}" placeholder="Enter ICAO code">
@@ -62,10 +80,49 @@
         </div>
 
         <div class="form-group">
+            <label for="{{ log_form.souls_on_board.id_for_label }}">{{ log_form.souls_on_board.label }}</label>
+            <input type="number" class="form-control" id="{{ log_form.souls_on_board.id_for_label }}" 
+                   name="{{ log_form.souls_on_board.name }}" value="{{ log_form.souls_on_board.value|default:'' }}">
+            {% if log_form.souls_on_board.errors %}
+            <div class="text-danger">{{ log_form.souls_on_board.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ log_form.fuel_on_departure.id_for_label }}">{{ log_form.fuel_on_departure.label }}</label>
+            <input type="number" class="form-control" id="{{ log_form.fuel_on_departure.id_for_label }}" 
+                   name="{{ log_form.fuel_on_departure.name }}" value="{{ log_form.fuel_on_departure.value|default:'' }}">
+            {% if log_form.fuel_on_departure.errors %}
+            <div class="text-danger">{{ log_form.fuel_on_departure.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ log_form.fuel_on_arrival.id_for_label }}">{{ log_form.fuel_on_arrival.label }}</label>
+            <input type="number" class="form-control" id="{{ log_form.fuel_on_arrival.id_for_label }}" 
+                   name="{{ log_form.fuel_on_arrival.name }}" value="{{ log_form.fuel_on_arrival.value|default:'' }}">
+            {% if log_form.fuel_on_arrival.errors %}
+            <div class="text-danger">{{ log_form.fuel_on_arrival.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
             <label for="{{ log_form.remarks.id_for_label }}">{{ log_form.remarks.label }}</label>
             <textarea class="form-control" id="{{ log_form.remarks.id_for_label }}" name="{{ log_form.remarks.name }}">{{ log_form.remarks.value|default:'' }}</textarea>
             {% if log_form.remarks.errors %}
             <div class="text-danger">{{ log_form.remarks.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{log_form.purpose.id_for_label}}">{{log_form.purpose.label}}</label>
+            <select class="form-control" id="{{log_form.purpose.id_for_label}}" name="{{log_form.purpose.name}}">
+                {% for choice in log_form.purpose.field.choices %}
+                <option value="{{choice.0}}" {% if choice.0 == log_form.purpose.value %}selected{% endif %}>{{choice.1}}</option>
+                {% endfor %}
+            </select>
+            {% if log_form.purpose.errors %}
+                <div class="text-danger">{{log_form.purpose.errors|striptags}}</div>
             {% endif %}
         </div>
 
