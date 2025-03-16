@@ -2,7 +2,8 @@
 {% block title %}SignIn{% endblock %}
 {% block content %}
 
-<div class="card w-50 shadow p-3 mb-5 bg-white rounded ">
+<div class="container h-100 d-flex justify-content-center align-items-center">
+  <div class="card w-50 shadow p-3 mb-5 bg-white rounded">
     <div class="card-body">
       <h5 class="card-title text-center">Login</h5>
       
@@ -32,6 +33,6 @@
           Don't have an account? <a href="{% url 'users:register' %}" class="ml-2">Sign Up</a>
       </div>
     </div>
+  </div>
 </div>
-
 {% endblock %}
