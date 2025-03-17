@@ -37,6 +37,7 @@
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">{{ form.password1.label }}</label>
           <input type="password" class="form-control" id="{{ form.password1.id_for_label }}" name="{{ form.password1.name }}" value="{{ form.password1.value|default:'' }}" required>
+          <div id="emailHelp" class="form-text text-muted">The password should be Alphanumeric(Not less than 8 characters)</div>
         </div>
 
         <div class="mb-3">
