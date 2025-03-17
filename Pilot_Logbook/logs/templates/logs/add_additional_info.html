@@ -6,20 +6,135 @@
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h3>Flight Crew Assignment</h3>
-    {{ crew_form.as_p }}
+    
+    <div class="form-group">
+        <label for="{{ crew_form.role.id_for_label }}">{{ crew_form.role.label }}</label>
+        <select class="form-control" id="{{ crew_form.role.id_for_label }}" name="{{ crew_form.role.name }}">
+            {% for choice in crew_form.role.field.choices %}
+                <option value="{{ choice.0 }}" {% if choice.0 == crew_form.role.value %}selected{% endif %}>{{ choice.1 }}</option>
+            {% endfor %}
+        </select>
+        {% if crew_form.role.errors %}
+            <div class="text-danger">{{ crew_form.role.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ crew_form.number_of_crew.id_for_label }}">{{ crew_form.number_of_crew.label }}</label>
+        <input type="number" class="form-control" id="{{ crew_form.number_of_crew.id_for_label }}" name="{{ crew_form.number_of_crew.name }}"
+               value="{{ crew_form.number_of_crew.value|default:'' }}">
+        {% if crew_form.number_of_crew.errors %}
+            <div class="text-danger">{{ crew_form.number_of_crew.errors|striptags }}</div>
+        {% endif %}
+    </div>
 
     <h3>Weather Report</h3>
-    {{ weather_form.as_p }}
+    
+    <div class="form-group">
+        <label for="{{ weather_form.weather_conditions.id_for_label }}">{{ weather_form.weather_conditions.label }}</label>
+        <select class="form-control" id="{{ weather_form.weather_conditions.id_for_label }}" name="{{ weather_form.weather_conditions.name }}">
+            {% for choice in weather_form.weather_conditions.field.choices %}
+                <option value="{{ choice.0 }}" {% if choice.0 == weather_form.weather_conditions.value %}selected{% endif %}>{{ choice.1 }}</option>
+            {% endfor %}
+        </select>
+        {% if weather_form.weather_conditions.errors %}
+            <div class="text-danger">{{ weather_form.weather_conditions.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ weather_form.temperature.id_for_label }}">{{ weather_form.temperature.label }}</label>
+        <input type="number" class="form-control" id="{{ weather_form.temperature.id_for_label }}" name="{{ weather_form.temperature.name }}"
+               value="{{ weather_form.temperature.value|default:'' }}">
+        {% if weather_form.temperature.errors %}
+            <div class="text-danger">{{ weather_form.temperature.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ weather_form.wind_speed.id_for_label }}">{{ weather_form.wind_speed.label }}</label>
+        <input type="number" class="form-control" id="{{ weather_form.wind_speed.id_for_label }}" name="{{ weather_form.wind_speed.name }}"
+               value="{{ weather_form.wind_speed.value|default:'' }}">
+        {% if weather_form.wind_speed.errors %}
+            <div class="text-danger">{{ weather_form.wind_speed.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
 
     <h3>Emergency Incident</h3>
-    {{ incident_form.as_p }}
+    
+    <div class="form-group">
+        <label for="{{ incident_form.incident_type.id_for_label }}">{{ incident_form.incident_type.label }}</label>
+        <input type="text" class="form-control" id="{{ incident_form.incident_type.id_for_label }}" name="{{ incident_form.incident_type.name }}"
+               value="{{ incident_form.incident_type.value|default:'' }}">
+        {% if incident_form.incident_type.errors %}
+            <div class="text-danger">{{ incident_form.incident_type.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ incident_form.actions_taken.id_for_label }}">{{ incident_form.actions_taken.label }}</label>
+        <textarea class="form-control" id="{{ incident_form.actions_taken.id_for_label }}" name="{{ incident_form.actions_taken.name }}">{{ incident_form.actions_taken.value|default:'' }}</textarea>
+        {% if incident_form.actions_taken.errors %}
+            <div class="text-danger">{{ incident_form.actions_taken.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ incident_form.outcome.id_for_label }}">{{ incident_form.outcome.label }}</label>
+        <textarea class="form-control" id="{{ incident_form.outcome.id_for_label }}" name="{{ incident_form.outcome.name }}">{{ incident_form.outcome.value|default:'' }}</textarea>
+        {% if incident_form.outcome.errors %}
+            <div class="text-danger">{{ incident_form.outcome.errors|striptags }}</div>
+        {% endif %}
+    </div>
 
     <h3>Flight Attachment</h3>
-    {{ attachment_form.as_p }}
+    
+    <div class="form-group">
+        <label for="{{ attachment_form.file.id_for_label }}">{{ attachment_form.file.label }}</label>
+        <input type="file" class="form-control-file" id="{{ attachment_form.file.id_for_label }}" name="{{ attachment_form.file.name }}">
+        {% if attachment_form.file.errors %}
+            <div class="text-danger">{{ attachment_form.file.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ attachment_form.description.id_for_label }}">{{ attachment_form.description.label }}</label>
+        <textarea class="form-control" id="{{ attachment_form.description.id_for_label }}" name="{{ attachment_form.description.name }}">{{ attachment_form.description.value|default:'' }}</textarea>
+        {% if attachment_form.description.errors %}
+            <div class="text-danger">{{ attachment_form.description.errors|striptags }}</div>
+        {% endif %}
+    </div>
 
     <h3>Maintenance Report</h3>
-    {{ maintenance_form.as_p }}
+    
 
-    <button type="submit">Save</button>
+    <div class="form-group">
+        <label for="{{ maintenance_form.aircraft_registration.id_for_label }}">{{ maintenance_form.aircraft_registration.label }}</label>
+        <input type="text" class="form-control" id="{{ maintenance_form.aircraft_registration.id_for_label }}" name="{{ maintenance_form.aircraft_registration.name }}"
+               value="{{ maintenance_form.aircraft_registration.value|default:'' }}">
+        {% if maintenance_form.aircraft_registration.errors %}
+            <div class="text-danger">{{ maintenance_form.aircraft_registration.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ maintenance_form.issue_reported.id_for_label }}">{{ maintenance_form.issue_reported.label }}</label>
+        <textarea class="form-control" id="{{ maintenance_form.issue_reported.id_for_label }}" name="{{ maintenance_form.issue_reported.name }}">{{ maintenance_form.issue_reported.value|default:'' }}</textarea>
+        {% if maintenance_form.issue_reported.errors %}
+            <div class="text-danger">{{ maintenance_form.issue_reported.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    
+    <div class="form-group">
+        <label for="{{ maintenance_form.fix_details.id_for_label }}">{{ maintenance_form.fix_details.label }}</label>
+        <textarea class="form-control" id="{{ maintenance_form.fix_details.id_for_label }}" name="{{ maintenance_form.fix_details.name }}">{{ maintenance_form.fix_details.value|default:'' }}</textarea>
+        {% if maintenance_form.fix_details.errors %}
+            <div class="text-danger">{{ maintenance_form.fix_details.errors|striptags }}</div>
+        {% endif %}
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% endblock %}
