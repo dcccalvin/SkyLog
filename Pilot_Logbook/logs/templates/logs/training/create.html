@@ -10,7 +10,10 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="{{ form.training_type.id_for_label }}">{{ form.training_type.label }}</label>
-                    {{ form.training_type }}
+                    <input type="text" class="form-control" id="{{ form.training_type.id_for_label }}" name="{{ form.training_type.name }}" required>
+                    {% if form.training_type.errors %}
+                        <div class="text-danger">{{ form.training_type.errors|striptags }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-group">
                     <label for="{{ form.completion_date.id_for_label }}">{{ form.completion_date.label }}</label>
@@ -18,11 +21,16 @@
                 </div>
                 <div class="form-group">
                     <label for="{{ form.instructor_name.id_for_label }}">{{ form.instructor_name.label }}</label>
-                    {{ form.instructor_name }}
+                    <input type="text" class="form-control" id="{{ form.instructor_name.id_for_label }}" name="{{ form.instructor_name.name }}" required>
+                    {% if form.instructor_name.errors %}
+                        <div class="text-danger">{{ form.instructor_name.errors|striptags }}</div>
+                    {% endif %}
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
+    <br>
+    <a href="{% url 'logs:training_record_list' %}" class="btn btn-secondary">Back</a>
 </div>
 {% endblock %}
