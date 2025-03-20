@@ -26,7 +26,7 @@ A **web-based application** designed for pilots to log flights, manage certifica
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/pilot-logbook.git
+git clone https://github.com/dcccalvin/logbook_project.git
 ```
 
 ### Navigate into the Project Directory
