@@ -26,7 +26,7 @@ A **web-based application** designed for pilots to log flights, manage certifica
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/dcccalvin/logbook_project.git
+git clone  https://github.com/dcccalvin/logbook_project.git
 ```
 
 ### Navigate into the Project Directory
@@ -65,4 +65,16 @@ Track and update your training history.
 
 ### Report Generation
 Download flight log reports in PDF format for documentation.
+
+---
+
+## 🤝 **Contributing**
+We welcome contributions from the community! Here’s how you can help:
+
+- **Fork the Repository**: Create your own copy and experiment freely.
+- **Submit Pull Requests**: Improve features, fix bugs, or enhance the documentation.
+- **Report Issues**: Found a bug or have a feature request? Open an issue.
+- **Enhance Documentation**: Help us keep the docs up to date.
+
+Your contributions are greatly appreciated! 🚀
 
