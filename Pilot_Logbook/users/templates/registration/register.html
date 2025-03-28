@@ -25,7 +25,7 @@
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">{{ form.username.label }}</label>
           <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default:'' }}" required>
-          <div id="emailHelp" class="form-text text-muted">Username has to be one word</div>
+          <div id="emailHelp" class="form-text text-muted">Usernames may contain alphanumeric, _, @, +, . and - characters.No spaces.</div>
         </div>
 
         <div class="mb-3">
