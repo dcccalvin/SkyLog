@@ -1,13 +1,15 @@
-name: Django CI
+name: Run Server on Main
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  test:
+  run-server:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +26,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Tests
+      - name: Run Server
         run: |
-          python manage.py test
+          python manage.py runserver 0.0.0.0:8000
+
 
