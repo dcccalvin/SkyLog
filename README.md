@@ -31,7 +31,7 @@ git clone  https://github.com/dcccalvin/logbook_project.git
 
 ### Navigate into the Project Directory
 ```bash
-cd pilot-logbook
+cd pilot_logbook
 ```
 
 ### Apply Migrations
