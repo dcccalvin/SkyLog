@@ -68,6 +68,14 @@ Download flight log reports in PDF format for documentation.
 
 ---
 
+## Database
+### Database schema
+This is the schema for the database
+![Database schema](<corrected schema.png>)
+
+---
+
+
 ## 🤝 **Contributing**
 We welcome contributions from the community! Here’s how you can help:
 
