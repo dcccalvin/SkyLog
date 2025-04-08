@@ -34,7 +34,6 @@ class Log(models.Model):
     AIRCRAFT=[("General Aviation","General Aviation"),("Commercial","Commercial"),("Military","Military")] 
     aircraft = models.CharField(max_length=100,choices=AIRCRAFT)
     aircraft_type = models.CharField(max_length=100)
-    #will add validator later
     aircraft_registration = models.CharField(max_length=100,validators=[is_aircraft_reg_num_valid])
     departure_airport = models.CharField(max_length=4, validators=[icao_validator])
     arrival_airport = models.CharField(max_length=4, validators=[icao_validator])
