@@ -1,6 +1,6 @@
 # ✈️ Pilot Logbook Management System 📝
 
-A **web-based application** designed for pilots to log flights, manage certifications, track training records, and generate reports. This system prioritizes user-friendly design, modular development, and secure data handling.
+A **web-based application** designed for pilots to log flights, manage certifications, track training records, and generate  log reports. This system prioritizes user-friendly design, modular development, and secure data handling.
 
 ---
 
