@@ -1,6 +1,6 @@
 # ✈️ Pilot Logbook Management System 📝
 
-A **web-based application** designed for pilots to log flights, manage certifications, track training records, and generate reports. This system prioritizes user-friendly design, modular development, and secure data handling.
+A **web-based application** designed for pilots to log flights, manage certifications, track training records, and generate  log reports. This system prioritizes user-friendly design, modular development, and secure data handling.
 
 ---
 
@@ -68,6 +68,14 @@ Download flight log reports in PDF format for documentation.
 
 ---
 
+## Database
+### Database schema
+This is the schema for the database
+![Database schema](<corrected schema.png>)
+
+---
+
+
 ## 🤝 **Contributing**
 We welcome contributions from the community! Here’s how you can help:
 
@@ -77,4 +85,3 @@ We welcome contributions from the community! Here’s how you can help:
 - **Enhance Documentation**: Help us keep the docs up to date.
 
 Your contributions are greatly appreciated! 🚀
-
