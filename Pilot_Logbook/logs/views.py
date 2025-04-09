@@ -225,3 +225,25 @@ def add_additional_info(request, log_id):
         'maintenance_form': maintenance_form,
         'log_entry': log_entry,
     })
+
+
+@login_required
+def summary_report_pdf(request):
+    logs = Log.objects.filter(user=request.user)
+    total_flights = logs.count()
+    total_hours = sum(log.flight_time for log in logs if log.flight_time)
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="Summary_Report.pdf"'
+
+    pdf = canvas.Canvas(response, pagesize=A4)
+    width, height = A4
+
+    pdf.setFont("Helvetica", 16)
+    pdf.drawString(100, height - 50, f"{capfirst(request.user.username)}'s Flight Summary Report")
+    pdf.setFont("Helvetica", 12)
+    pdf.drawString(50, height - 100, f"Total Flights: {total_flights}")
+    pdf.drawString(50, height - 120, f"Total Hours Flown: {total_hours:.2f}")
+
+    pdf.save()
+    return response
