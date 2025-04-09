@@ -231,7 +231,9 @@ def add_additional_info(request, log_id):
 def summary_report_pdf(request):
     logs = Log.objects.filter(user=request.user)
     total_flights = logs.count()
-    total_hours = sum(log.flight_time for log in logs if log.flight_time)
+    training_sessions = TrainingRecord.objects.filter(user=request.user)
+    total_training_sessions = training_sessions.count()
+    
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="Summary_Report.pdf"'
@@ -243,7 +245,9 @@ def summary_report_pdf(request):
     pdf.drawString(100, height - 50, f"{capfirst(request.user.username)}'s Flight Summary Report")
     pdf.setFont("Helvetica", 12)
     pdf.drawString(50, height - 100, f"Total Flights: {total_flights}")
-    pdf.drawString(50, height - 120, f"Total Hours Flown: {total_hours:.2f}")
+    pdf.drawString(50, height - 120, f"Total Training Sessions: {total_training_sessions}")
+    pdf.drawString(50, height - 140, f"Date Generated: {timezone.now().date()}")
+    
 
     pdf.save()
     return response
