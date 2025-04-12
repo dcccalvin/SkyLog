@@ -9,7 +9,7 @@ A **web-based application** designed for pilots to log flights, manage certifica
 - 🛫 **Flight Logs**: Add, view, edit, and delete detailed flight logs.
 - 🧾 **Pilot Certification**: Manage single pilot certification with editable details.
 - 🎓 **Training Records**: Track and manage your training records.
-- 📄 **Report Generation**: Generate and download flight log reports in PDF format.
+- 📄 **Report Generation**: Generate and download flight log reports in PDF format, including summaries like total flights and souls on board.
 - ❌ **Error Handling**: Friendly messages for invalid inputs and errors.
 
 ---
@@ -64,7 +64,7 @@ Update and manage your single certification.
 Track and update your training history.
 
 ### Report Generation
-Download flight log reports in PDF format for documentation.
+Generate downloadable PDF reports for your flights. Reports include individual flight details as well as a summary section showing total flights logged and total souls carried.
 
 ---
 
