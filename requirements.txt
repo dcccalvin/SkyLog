@@ -1,0 +1,12 @@
+Django>=4.2,<5.0
+djangorestframework>=3.14.0
+Pillow>=10.0.0
+reportlab>=4.0.0
+WeasyPrint>=61.0
+django-crispy-forms>=2.0
+crispy-bootstrap4>=2022.1
+python-dotenv>=1.0.0
+# Optional for PostgreSQL support:
+# psycopg2>=2.9.0
+# Optional for MySQL support:
+# mysqlclient>=2.2.0
