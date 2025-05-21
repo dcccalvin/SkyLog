@@ -55,7 +55,7 @@ class Log(models.Model):
     flight_type = models.CharField(max_length=3, choices=FLIGHT_TYPES)
 
     
-    flight_number = models.CharField(max_length=20, unique=True, default=uuid.uuid4)
+    flight_number = models.CharField(max_length=80, unique=True, default=uuid.uuid4)
 
     safety_concerns = models.BooleanField(default=False)
 
