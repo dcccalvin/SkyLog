@@ -1,1 +1,22 @@
-*.sqlite3
+# Python / Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+*.log
+
+# Virtual envs
+venv/
+env/
+
+# Django secrets
+.env
+
+# JSON files with data
+*.json
+
+
+*/migrations/*.py
+*/migrations/*.pyc
+!*/migrations/__init__.py
